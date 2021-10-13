@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">CrapsGame</string>
+    <string name="craps_game">Craps Game</string>
+    <string name="craps_game1">CRAPS GAME</string>
+    <string name="winner_player_1">WINNER : Player 1</string>
+    <string name="Bryan">Bryan</string>
+    <string name="Ben">Ben</string>
+    <string name="todo">TODO</string>
+    <string name="todo2" tools:ignore="DuplicateDefinition">TODO</string>
+    <string name="roll_the_dice">Roll the Dice</string>
+    <string name="winsLoss">Results</string>
+</resources>
