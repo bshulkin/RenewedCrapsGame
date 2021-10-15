@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
@@ -10,7 +11,6 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_marginBottom="40dp"
         android:fontFamily="sans-serif-black"
         android:gravity="center"
@@ -18,48 +18,12 @@
         android:textSize="40sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/Winner"
-        android:layout_width="371dp"
-        android:layout_height="123dp"
-        android:layout_below="@+id/title"
-        android:layout_marginTop="-1dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:gravity="center"
-        android:text="@string/winner_player_1"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="35sp" />
-
     <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="410dp"
-        android:layout_below="@+id/Winner"
-        android:layout_marginTop="0dp"
+        android:layout_width="378dp"
+        android:layout_height="665dp"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="-26dp"
         android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="40dp"
-            android:orientation="horizontal">
-
-
-            <TextView
-                android:id="@+id/winsLossView"
-                android:layout_width="140dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="@string/winsLoss"
-                android:textAlignment="center"
-                android:textColor="#000000"
-                android:textSize="25sp" />
-
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -74,8 +38,8 @@
                 android:layout_height="140dp"
                 android:contentDescription="@string/todo"
                 android:padding="10dp"
-                android:src="@drawable/die6" />
-
+                android:src="@drawable/die6"
+                tools:ignore="ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/dice2"
@@ -83,7 +47,8 @@
                 android:layout_height="140dp"
                 android:contentDescription="@string/todo"
                 android:padding="10dp"
-                android:src="@drawable/die6" />
+                android:src="@drawable/die6"
+                tools:ignore="ImageContrastCheck" />
 
         </LinearLayout>
 
@@ -100,6 +65,32 @@
             android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/roll_button2"
+            android:layout_width="317dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/btn_bg"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="Roll Again"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/winsLossView"
+            android:layout_width="301dp"
+            android:layout_height="126dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/winsLoss"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="25sp" />
 
     </LinearLayout>
 
