@@ -13,16 +13,23 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     public TextView results;
-    public TextView winner;
     public Button rollsNumber;
-    public TextView textView;
+    public Button rollAgain;
     public ImageView image1, image2;
-    public int wins;
-    public int losses;
-    public int point = 0;
-    int over = 20;
-    public int first_number = 0;
-    public int second_number = 0;
+
+    final int[] die = {R.drawable.die1, R.drawable.die2, R.drawable.die3, R.drawable.die4, R.drawable.die5, R.drawable.die6};
+
+
+    Random first_die = new Random();
+    int first_number = first_die.nextInt(6) + 1;
+    Random second_die = new Random();
+    int second_number = second_die.nextInt(6) + 1;
+    int sum_round = first_number + second_number;
+
+    int sumPointRound = 0;
+    int die3;
+    int die4;
+
 
 
 
@@ -32,96 +39,64 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         rollsNumber = findViewById(R.id.roll_button);
-        winner = findViewById(R.id.Winner);
+        rollAgain = findViewById(R.id.roll_button2);
         results = findViewById(R.id.winsLossView);
         image1 = findViewById(R.id.dice1);
         image2 = findViewById(R.id.dice2);
 
         rollsNumber.setOnClickListener(view -> {
 
-            final int[] die = {R.drawable.die1, R.drawable.die2, R.drawable.die3, R.drawable.die4, R.drawable.die5, R.drawable.die6};
 
-
-            Random first_die = new Random();
-            int first_number = first_die.nextInt(6) + 1;
-            Random second_die = new Random();
-            int second_number = second_die.nextInt(6) + 1;
-            int sum_round = first_number + second_number;
-
-            textView.setText("You rolled: " + first_number + "+" + second_number + "=" + sum_round );
-
-            if (over == 30) {
-                over = 40;
+            if(sum_round == 7 || sum_round == 11)
+            {
+                results.setText("Congratulations! You won.");
             }
-            if (over == 20) {
-
-                switch (sum_round) {
-                    case 7:
-                    case 11:
-                        textView.setText("You won");
-                        rollsNumber.setEnabled(false);
-                        wins++;
-                        displayWinNumber();
-                        break;
-                    case 2:
-                    case 3:
-                    case 12:
-                        textView.setText("You lost");
-                        rollsNumber.setEnabled(false);
-                        losses++;
-                        displayWinNumber();
-                        break;
-                    default:
-                        point = sum_round;
-                        textView.setText("You rolled " + point + ".\n" + "You must roll " + point
-                                + " to win." + "\n" + "If you roll a 7 you lose." + "\n" + "Roll Again!");
-                        displayWinNumber();
-                        break;
+            else {
+                if (sum_round == 2 || sum_round == 3 || sum_round == 12) {
+                    results.setText("Sorry, you have lost.");
+                } else {
+                    results.setText("You rolled " + sum_round + ". This is your point value.");
                 }
             }
 
-            if (over == 40) {
-                if (point == sum_round){
-                    textView.setText("You have won");
-                    rollsNumber.setEnabled(false);
-                    over = 20;
-                    wins++;
-                    displayWinNumber();
-            }
-                if(sum_round == 7){
-                    textView.setText("You Lose");
-                    rollsNumber.setEnabled(false);
-                    over = 20;
-                    losses ++;
-                    displayWinNumber();
 
+        rollAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                double[] odds = new double[11]; //{2,1.5,1.2,1.2,1.5,2}
+                odds[0] = 1; //odds on a 2
+                odds[1] = 1; //odds on a 3
+                odds[2] = 2; //odds on a 4
+                odds[3] = 1.5; //odds on a 5
+                odds[4] = 1.2; //odds on a 6
+                odds[5] = 1; //odds on a 7
+                odds[6] = 1.2; //odds on an 8
+                odds[7] = 1.5; //odds on a 9
+                odds[8] = 2; //odds on a 10
+                odds[9] = 1; //odds on an 11
+                odds[10] = 1; //odds on a 12
+
+                while (sumPointRound != 7 && sumPointRound != sum_round) {
+                    die3 = first_die.nextInt(5) + 1;
+                    die4 = second_die.nextInt(5) + 1;
+                    sumPointRound = die3 + die4;
+                    results.setText("You rolled: " + die3 + " + " + die4 + " = " + sumPointRound);
                 }
-                if (sum_round != point && sum_round != 7){
-                    textView.setText("You rolled " + point + ".\n" + "You must roll " + point
-                            + " to win." + "\n" + "If you roll a 7 you lose." + "\n" + "Roll Again!");
+                //sumPointRound = 8;
+                if (sumPointRound == 7) {
+                    results.setText("You Lost");
                 }
-
-
+                else if (sumPointRound == sum_round){
+                    results.setText("You Won!");
+                }
 
                 image1.setImageResource(die[first_number]);
                 image2.setImageResource(die[second_number]);
 
+
             }
         });
-    }
-
-    @SuppressLint("SetTextI18n")
-    private void displayWinNumber() {
-        textView.setText("Player Wins: " + wins + "   House Wins: " + losses);
-    }
-    @SuppressLint("SetTextI18n")
-    public void newGame(View view){
-        rollsNumber.setEnabled(true);
-
-        results.setText("Roll again");
-        point = 0;
-        first_number = 0;
-        second_number = 0;
-
-    }
-}
+});
+    
+}}

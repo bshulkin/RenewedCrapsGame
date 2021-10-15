@@ -9,4 +9,5 @@
     <string name="todo2" tools:ignore="DuplicateDefinition">TODO</string>
     <string name="roll_the_dice">Roll the Dice</string>
     <string name="winsLoss">Results</string>
+    <string name="restart">Restart</string>
 </resources>
