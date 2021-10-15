@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     public Button rollAgainButton;
     public ImageView diceOneIv, diceTwoIv;
 
-    final int[] die = {R.drawable.die1, R.drawable.die2, R.drawable.die3,
+    final int[] die = {0, R.drawable.die1, R.drawable.die2, R.drawable.die3,
             R.drawable.die4, R.drawable.die5, R.drawable.die6};
 
     Random dieOneRng = new Random();
